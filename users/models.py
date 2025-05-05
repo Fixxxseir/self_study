@@ -1,8 +1,8 @@
+from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -23,6 +23,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("role", "admin")
 
         if extra_fields.get("is_staff") is not True:
             raise ValueError("Superuser должен иметь флаг is_staff=True.")
@@ -36,11 +37,12 @@ class User(AbstractUser):
     """
     Модель представления привычки
     """
+
     role = models.CharField(
         max_length=20,
         choices=settings.USER_ROLES,
-        default='student',
-        db_index=True
+        default="student",
+        db_index=True,
     )
     username = models.CharField(
         max_length=255,
@@ -86,3 +88,15 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"{self.username} ({self.role})"
+
+    @property
+    def is_admin(self):
+        return self.role == "admin" or self.is_superuser
+
+    @property
+    def is_teacher(self):
+        return self.role == "teacher"
+
+    @property
+    def is_student(self):
+        return self.role == "student"
