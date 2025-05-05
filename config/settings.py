@@ -25,7 +25,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    "lessons",
+    "users",
     "courses",
 ]
 
@@ -98,19 +98,19 @@ DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation."
-                "UserAttributeSimilarityValidator",
+        "UserAttributeSimilarityValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation."
-                "MinimumLengthValidator",
+        "MinimumLengthValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation."
-                "CommonPasswordValidator",
+        "CommonPasswordValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation."
-                "NumericPasswordValidator",
+        "NumericPasswordValidator",
     },
 ]
 
@@ -147,7 +147,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination."
-                                "PageNumberPagination",
+    "PageNumberPagination",
     "PAGE_SIZE": 4,
 }
 
@@ -189,16 +189,7 @@ INTERNAL_IPS = [
 ]
 
 USER_ROLES = [
-    (
-        'admin',
-        'Administrator'
-    ),
-    (
-        'teacher',
-        'Teacher'
-    ),
-    (
-        'student',
-        'Student'
-    ),
+    ("admin", "Administrator"),
+    ("teacher", "Teacher"),
+    ("student", "Student"),
 ]
