@@ -47,26 +47,20 @@
 
 ## Инструкции по установке
 1. Клонируйте репозиторий:
-```
-bash
-git clone https://github.com/yourusername/student-learning-platform.git
+```bash
+git clone https://github.com/Fixxxseir/self_study.git
 cd student-learning-platform
 ```
 2. Создайте и активируйте виртуальное окружение:
-```
-bash
-python -m venv venv
-source venv/bin/activate  # Linux/MacOS
-venv\Scripts\activate     # Windows
+```bash
+pip add poetry
 ```
 3. Установите зависимости через Poetry:
-```
-bash
+```bash
 poetry install
 ```
 4. Создайте файл .env в корне проекта со следующим содержимым:
-```
-ini
+```ini
 SECRET_KEY="your-secret-key-here"
 DEBUG=True
 
@@ -94,26 +88,22 @@ REDIS_URL=redis://localhost:6379/0  # или redis:6379/0 для docker
 LOCATION=redis://localhost:6379/0   # или redis:6379/0 для docker
 ```
 5. Примените миграции:
-```
-bash
+```bash
 python manage.py migrate
 ```
 6. Создайте суперпользователя:
-```
-bash
+```bash
 python manage.py createsuperuser
 ```
 6. Запустите сервер:
-```
-bash
+```bash
 python manage.py runserver
 ```
 # Запуск с Docker (опционально)
 - Убедитесь, что у вас установлены Docker и Docker Compose
 
 Выполните:
-```
-bash
+```bash
 docker-compose up --build
 ```
 ## Структура API
@@ -132,8 +122,7 @@ docker-compose up --build
 
 ## Тестирование
 Для запуска тестов выполните:
-```
-bash
+```bash
 python manage.py test
 ```
 ## Роли пользователей
